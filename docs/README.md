@@ -112,3 +112,14 @@ npx serve -s build // serve라는 웹서버를 실행시킬 때 빌드라는 디
 
 리액트의 컴포넌트를 사용하게 되면, 가독성, 재사용성, 유지보수성이 높아진다.
 컴포넌트들이 만약 한 파일에 모여 있으면, 다른 파일에서 해당 컴포넌트를 사용하기가 불편해지므로 컴포넌트당 하나의 파일로 분리하는 것이 좋다.
+
+![](https://velog.velcdn.com/images/ninto_2/post/d7bcbd45-01c7-409f-8d55-f6e19924d7b9/image.png)
+
+state의 개념은 props와 함께 살펴보아야 한다.
+props는 사용자가 컴포넌트를 사용하는 입장에서 중요한 것이고, state는 그 props의 값에 따라 내부 구현에 필요한 데이터들이라고 볼 수 있다.
+
+```jsx
+<Component props_name="props_value">
+```
+
+이벤트는 props, state, event 3자가 서로 상호작용하면서 애플리케이션의 역동성을 만든다.
