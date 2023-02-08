@@ -1,8 +1,10 @@
 import './App.css';
 import React, { Component } from 'react';
 import TOC from './components/TOC';
-import Content from './components/Content';
+import ReadContent from './components/ReadContent';
 import Subject from './components/Subject';
+import Control from './components/Control';
+import CreateContent from './components/CreateContent';
 
 /*
 리액트 클래스형 컴포넌트 만들기
@@ -86,10 +88,11 @@ class App extends Component {
   // event.preventDefault()는 a의 기본적인 동작을 막는다. 페이지가 전환되지 않음
 
   render() {
-    var _title, _desc = null;
+    var _title, _desc, _article = null;
     if (this.state.mode === 'welcome') {
       _title = this.state.welcome.title;
       _desc = this.state.welcome.desc;
+      _article = <ReadContent title={_title} desc={_desc}/>
     } else if (this.state.mode === 'read') {
       var i = 0;
       while (i < this.state.contents.length) {
@@ -101,11 +104,15 @@ class App extends Component {
         }
         i++;
       }
+      _article = <ReadContent title={_title} desc={_desc}/>
       /*
       _title = this.state.contents[0].title;
       _desc = this.state.contents[0].desc;
       */
+    } else if (this.state.mode === 'create') {
+      _article = <CreateContent/>
     }
+
     return (
       <div className="App">
         <Subject title={this.state.subject.title} sub={this.state.subject.sub}
@@ -145,7 +152,15 @@ class App extends Component {
           }.bind(this)
         }
         data={this.state.contents}/>
-        <Content title={_title} desc={_desc}/>
+        <Control 
+          onChangeMode ={function(_mode) {
+            this.setState({
+              mode: _mode,
+            })
+          }.bind(this)}
+        />
+        {/*<ReadContent title={_title} desc={_desc}/>*/}
+        {_article}
       </div>
     );
   }
